@@ -3,8 +3,10 @@
 {{title}}
 {% endblock %}
 {% block content %}
-<h1>{{title}}</h1>
-{% for value in lista %}
-<p>{{value}}</p>
-{% endfor %}
+<div class="container">
+    <h1>{{title}}</h1>
+    {% for value in lista %}
+    <p>{{value}}</p>
+    {% endfor %}
+</div>
 {% endblock %}

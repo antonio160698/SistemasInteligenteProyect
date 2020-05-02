@@ -7,5 +7,7 @@ def index():
     lista = ["h", "hsugu", "nkhq"]
     return render_template("index.html", title=title, lista = lista)
 
+from routes.google import *
+
 if __name__ == "__main__":
     app.run(debug=True)
