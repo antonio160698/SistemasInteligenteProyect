@@ -1,5 +1,26 @@
 {% extends 'base.html' %}
 {% block title %} Analisis {% endblock %}
 {% block content %}
+<div class="container">
 <h1>Primeros pasos</h1>
+<input type="text" id="ciudad"/>
+<button class="btn" onclick="obtener();">Regresa</button>
+<div style="background-color: black;color:white">
+    <p id="respuesta"></p>
+</div>
+</div>
+<script>
+function obtener(){
+    let ciudad = $('#ciudad').val();
+    console.log(ciudad);
+    $.get("{{API_URL}}find?q="+ciudad+"&lang=es&appid={{API_KEY}}",
+    function( data ) {
+        let cont = "";
+        for(let x of data.list ){
+            cont+= "<p>Nombre: "+x.name +" descripcion: "+x.weather[0].description+"<img src='http://openweathermap.org/img/wn/"+x.weather[0].icon+".png'></p>"; 
+        }
+    $( "#respuesta" ).html( cont );
+    });
+}
+</script>
 {% endblock %}

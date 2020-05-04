@@ -8,4 +8,6 @@ from datetime import datetime
 
 @app.route('/example')
 def example():
-    return render_template('example.html')
+    URL = 'https://api.openweathermap.org/data/2.5/'
+    key = 'b1ffe3330b6cdb03e70a9e5842a7f0b1'
+    return render_template('example.html', API_URL=URL, API_KEY=key)
