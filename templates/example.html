@@ -2,12 +2,46 @@
 {% block title %} Analisis {% endblock %}
 {% block content %}
 <div class="container">
-<h1>Primeros pasos</h1>
+<!-- <h1>Primeros pasos</h1>
 <input type="text" id="ciudad"/>
 <button class="btn" onclick="obtener();">Regresa</button>
 <div style="background-color: black;color:white">
     <p id="respuesta"></p>
-</div>
+</div> -->
+<h1 id="diabetes">Diabetes test: </h1>
+<form>
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <label for="inputEmbarazo">Embarazos</label>
+        <input type="number" min="0" class="form-control" id="inputEmbarazo" placeholder="Embarazos">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="inputGlucosa">Glucosa</label>
+        <input type="number" min="0" max="199" class="form-control" id="inputGlucosa" placeholder="Glucosa">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="inputBlood">Presion de Sangre</label>
+        <input type="number" min="0" max="122" class="form-control" id="inputBlood" placeholder="Presion de Sangre">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="inputskin">Grosor de Piel</label>
+        <input type="number" min="0" max="99" class="form-control" id="inputskin" placeholder="Grosor de piel">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="inputInsulin">Insulina</label>
+        <input type="number" min="0" max="846" class="form-control" id="inputInsulin" placeholder="Insulina">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="inputIMC">I.M.C.</label>
+        <input type="number" min="0" max="70" class="form-control" id="inputIMC" placeholder="I.M.C.">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="inputAge">Años</label>
+        <input type="number" min="0" max="99" class="form-control" id="inputAge" placeholder="Años">
+      </div>
+    </div>
+  </form>
+  <button class="btn btn-primary" onclick="obtenerDiabetes();">Test</button>
 </div>
 <script>
 function obtener(){
@@ -20,6 +54,32 @@ function obtener(){
             cont+= "<p>Nombre: "+x.name +" descripcion: "+x.weather[0].description+"<img src='http://openweathermap.org/img/wn/"+x.weather[0].icon+".png'></p>"; 
         }
     $( "#respuesta" ).html( cont );
+    });
+}
+function obtenerDiabetes(){
+    $.ajax({
+        type:"POST",
+        contentType:"application/json; charset=utf-8",
+        url:"/api/diabetes_prediction",
+        data: JSON.stringify({
+        "pregnant":$('#inputEmbarazo').val(),
+        "glucase":$('#inputGlucosa').val(),
+        "blood":$('#inputBlood').val(),
+        "skin":$('#inputskin').val(),
+        "insulin":$('#inputInsulin').val(),
+        "imc":$('#inputIMC').val(),
+        "age":$('#inputAge').val()
+    }),
+    success: function( data ) {
+        let res = "";
+        if(data == 1){
+            res = "Tienes diabetes se recomienda que vaya con su medico familiar para comprobarlo";
+        }else{
+            res = "No tiene diabetes, puede hacerse el examen para estar mas seguro";
+        }
+    $( "#diabetes" ).html( 'Test diabetes: ' + res );
+    },
+    dataType:"json"
     });
 }
 </script>

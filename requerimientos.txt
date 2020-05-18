@@ -1,1 +1,6 @@
 flask
+sklearn-json
+
+//-----------no es necesario------------//
+pandas
+scikit-learn = 0.21.3
