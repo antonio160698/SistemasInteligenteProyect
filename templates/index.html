@@ -4,9 +4,21 @@
 {% endblock %}
 {% block content %}
 <div class="container">
-    <h1>{{title}}</h1>
-    {% for value in lista %}
-    <p>{{value}}</p>
-    {% endfor %}
+    {% for i in range(0,listalen): %}
+    <div class="card mb-3">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img src="{{lista[i].img}}" class="card-img" alt="..." style="width:auto; height:150px;">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Placa: {{lista[i].Placa}}</h5>
+              <p class="card-text">Nombre: {{lista[i].Nombre}}</p>
+              <p class="card-text"><small class="text-muted">Hora: {{lista[i].Hora}}</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
 </div>
 {% endblock %}
