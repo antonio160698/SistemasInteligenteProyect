@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% block title %}
+Crear
+{% endblock %}
+{% block content %}
+<style>
+.file-image {
+  display:inline-block;
+  position:relative;
+}
+.file-image input {
+  position:absolute;
+  overflow:hidden;
+  opacity:0;
+  width:0;
+}
+.file-image .reset {
+  cursor:pointer;
+  display:block;
+  position:absolute;
+  right:0;
+  width:40px;
+  height:40px;
+  text-align:center;
+  background:rgba(0,0,0,.8);
+}
+.file-image .reset:before {
+  content:'\d7';
+  font:normal normal 40px/39px sans-serif, Arial;
+  color:#fa8e8e;
+}
+.file-image .image {
+  cursor:pointer;
+  display:block;
+  box-sizing:border-box;
+  width:300px;
+  height:300px;
+  border:1px solid #dbdbdb;
+  background-color:#f0f0f0;
+  background-repeat:no-repeat;
+  background-position:center center;
+  background-size:100% 100%;
+}
+.file-image .image:before, .file-image .image:after {
+  content:"";
+  display:block;
+  position:absolute;
+  left:0;
+  right:0;
+  top:50%;
+  font:normal normal 14px sans-serif, Arial;
+  line-height:0;
+  color:#ababab;
+  text-align:center;
+}
+.file-image .image:before {
+  content:"+";
+  font-size:100px;
+  margin-top:-20px;
+}
+.file-image .image:after {
+  content:"Add Icon";
+  margin-top:30px;
+}
+.file-image .reset {display:none}
+.file-image input:not([title=""]) ~ .reset {display:block}
+.file-image input:not([title=""]) ~ .image {border:0 none;}
+.file-image input:not([title=""]) ~ .image:before,
+.file-image input:not([title=""]) ~ .image:after {display:none}
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-5">
+            <i class="file-image">
+                <input  id="_"  type="file" onchange="readImage(this)" title="" />
+                <i class="reset" onclick="resetImage(this.previousElementSibling)"></i>
+                <label for="_" class="image"></label>
+              </i>
+        </div>
+        <div class="col-7">
+            <form>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email address</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Password</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-danger">Close</button>
+                </div>
+              </form>
+        </div>
+    </div>
+</div>
+<script>
+    function resetImage(input) {
+  input.value = '';
+  input.onchange();
+}
+function readImage(input) {
+  var receiver = input.nextElementSibling.nextElementSibling;
+  input.setAttribute('title', input.value.replace(/^.*[\\/]/, ''));
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      receiver.style.backgroundImage = 'url(' + e.target.result + ')';
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+  else receiver.style.backgroundImage = 'none';
+}
+</script>
+{% endblock %}

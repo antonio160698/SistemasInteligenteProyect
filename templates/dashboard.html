@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}
+Dashboard
+{% endblock %}
+{% block content %}
+
+<div class="row">
+    <div class="col-sm-12">
+        <iframe name=miframeflotante src="{{url_for('.iframedash')}}" width=100% height=250 frameborder="0" scrolling=no marginwidth=2 marginheight=4 align=left>Tu navegador no soporta frames!!</iframe>
+    </div>
+    <div class="col-md-6 col-sm-12">
+        <iframe name=framelist id="framelist" src="{{url_for('.iframelist')}}" width=100% height=350 frameborder="0" marginwidth=2 marginheight=4 align=left>Tu navegador no soporta frames!!</iframe>
+    </div>
+    <div class="col-md-6 col-sm-12">
+        <form>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-danger">Close</button>
+                <button type="submit" class="btn btn-success">Key</button>
+            </div>
+          </form>
+    </div>
+</div>
+<!-- <iframe class="responsive-iframe" width="100%" src="{{url_for('.iframedash')}}" title="Graficas"></iframe>  -->
+{% endblock %}
