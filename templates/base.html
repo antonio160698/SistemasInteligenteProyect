@@ -6,6 +6,11 @@
       <link rel="shortcut icon" href="{{ url_for('static', filename='img/tortuga.ico') }}">
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
       <title>{% block title %}{% endblock %}</title>
+      <style>
+        .noHover {
+          color: initial;
+        }
+      </style>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -15,11 +20,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div class="navbar-nav">
-                <a class="nav-item nav-link" href="{{url_for('.index')}}">Home</a>
+                <a class="nav-item nav-link" href="{{url_for('.dashboard')}}">Home</a>
+                <a class="nav-item nav-link" href="{{url_for('.index')}}">Reportes</a>
                 <a class="nav-item nav-link" href="{{url_for('.crear')}}">Añadir</a>
                 <a class="nav-item nav-link" href="{{url_for('.grafica')}}">Graficas</a>
-                <a class="nav-item nav-link" href="{{url_for('.ingresar')}}">Ingresar</a>
-                <a class="nav-item nav-link" href="{{url_for('.dashboard')}}">Dashboard</a>
                 <!--<a class="nav-item nav-link" href="{{url_for('.example')}}">Example</a>-->
               </div>
             </div>
