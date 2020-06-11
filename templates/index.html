@@ -3,22 +3,29 @@
 {{title}}
 {% endblock %}
 {% block content %}
-<div class="container">
-    {% for i in range(0,listalen): %}
-    <div class="card mb-3">
+<div class="container mt-4">
+  {% for i in range(0,listalen): %}
+    <a class="noHover" href="{{url_for('.show', id=i)}}">
+      <div class="card mb-3">
         <div class="row no-gutters">
           <div class="col-md-4">
-            <img src="{{lista[i].img}}" class="card-img" alt="..." style="width:auto; height:150px;">
+            <img src="{{lista[i].img}}" class="card-img" alt="..." style="">
           </div>
           <div class="col-md-8">
             <div class="card-body">
               <h5 class="card-title">Placa: {{lista[i].Placa}}</h5>
-              <p class="card-text">Nombre: {{lista[i].Nombre}}</p>
-              <p class="card-text"><small class="text-muted">Hora: {{lista[i].Hora}}</small></p>
+              <p class="card-text">Nombre del denunciante: {{lista[i].Nombre}}</p>
+              <p class="card-text">Zona: {{lista[i].Zona}}</p>
+              <p class="card-text"><small class="text-muted">Fecha: {{lista[i].Fecha}}</small></p>
             </div>
           </div>
         </div>
       </div>
-      {% endfor %}
+    </a>
+  {% endfor %}
+  <div class="d-flex flex-row-reverse mb-3">
+    <a class="btn btn-danger ml-2" href="">Borrar reporte</a>
+    <a class="btn btn-success" href="{{url_for('.crear')}}">Añadir reporte</a>
+  </div>
 </div>
 {% endblock %}
